@@ -13,15 +13,22 @@ def parsegroup(filelist):
 
 def uniqueanswers(glist):
     uniquelist = []
-    templist = []
-    for g in glist:
-        for p in g:
-            for a in p:
-                if a not in templist:
-                    templist.append(a)
+    valstring = 'abcdefghijklmnopqrstuvwxyz'
+    vallist = ['a','b','c','d','e','f','g',
+            'h','i','j','k','l','m','n','o',
+            'p','q','r','s','t','u','v','w',
+            'x','y','z']
+    for group in glist:
+        for person in group:
+            for i in valstring:
+                if  i not in person and i in vallist:
+                    vallist.remove(i)
                 else: continue
-        uniquelist.append(templist)
-        templist = []
+        uniquelist.append(vallist)
+        vallist = ['a','b','c','d','e','f','g',
+                'h','i','j','k','l','m','n','o',
+                'p','q','r','s','t','u','v','w',
+                'x','y','z']
 
     return uniquelist
 
@@ -41,9 +48,9 @@ def  main():
     groupans = parsegroup(flist)
     uniqueans = uniqueanswers(groupans)
     counts = countanswers(uniqueans)
-
-    print(counts)
     print("Sum is: ", sum(counts))
+    
+    f.close()
 
 #RUN MAIN
 main()
